@@ -28,7 +28,7 @@ class Animator():
     
     def update(self, statusText):
         self.console.print(self.contents[statusText])
-        self.ani.update(
+        self.stat.update(
             status=f"[bold green]Working on {statusText}...")
 
 ani = Animator()
