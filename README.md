@@ -15,7 +15,11 @@ ERFA=true # false 有沒有啟用 2fa
 > ⚠  建議使用 2fa 登入 
 
 ### ☠ Step2. 執行 `main.py`
-
+> ⚠ 建議搭配手機裝置打開 instagram 批准登入
+>
+> 🗑 登入新帳號前可先刪除 `session.json`
 ```
 python3 main.py
 ```
+
+![screenshot](https://i.imgur.com/QE52uW2.png)

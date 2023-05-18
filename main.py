@@ -1,29 +1,13 @@
-import os
 import queue
 import threading
 from instagrapi import Client
-from dotenv import load_dotenv
-from time import sleep
-from rich.console import Console
-from rich.progress import track
 from rich.progress import Progress
-from pprint import pprint
 from lib import get_storys_worker
 from lib import like_storys_worker
 from lib import animator
+from lib import login
 
-load_dotenv()
-
-username = os.environ.get('ACCOUNT')
-password = os.environ.get('PASSWORD')
-ERFA = os.environ.get('ERFA', "false") == "true"  # 2fa
-ERFA_code = ""
-
-if ERFA:
-    ERFA_code = input("🚀 Input verification code:")
-
-console = Console()
-ani = animator.Animator(console)
+ani = animator.Animator()
 cl = None
 
 with ani.createStatus() as status:
@@ -32,7 +16,7 @@ with ani.createStatus() as status:
     ani.update("login")
 
     # Login
-    cl.login(username, password, verification_code=ERFA_code)
+    login.login_user(cl, status)
     ani.update("get following")
 
     # Get the list of following
@@ -68,9 +52,12 @@ with Progress() as progress:
     task_storys = progress.add_task("💓 [bold #F458F6]Liking storys[bold #F458F6]", total=work_storys.qsize())
 
     workers.clear()
+    
+    # adds a random delay between 1 and 3 seconds after each request
+    cl.delay_range = [1, 3]
 
-    # 產生 15 個 worker
-    for i in range(15):
+    # 產生 3 個 worker
+    for i in range(3):
         workers.append(like_storys_worker.Worker(work_storys, lock, progress, task_storys, cl))
         workers[-1].start()
 

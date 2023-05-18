@@ -1,6 +1,8 @@
+from rich.console import Console
+
 class Animator():
-    def __init__(self, console):
-        self.console = console
+    def __init__(self):
+        self.console = Console()
         self.contents = {"login": ":smirk_cat: [bold cyan]Initialized[/bold cyan] instagrapi",
                          "get following": ":smiling_imp: [bold #48C9B0 ]Login[/bold #48C9B0 ] successful",
                          "done": ":alien: [bold #AF7AC5]Get following[/bold #AF7AC5] complete"}
