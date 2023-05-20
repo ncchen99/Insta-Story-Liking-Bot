@@ -27,4 +27,4 @@ class Worker(threading.Thread):
                 print("🥃 FeedbackRequired error occurred") 
                 break
             except Exception as e:
-                print(f"Error occurred error: {e}")
+                print(f"Error occurred: {e}")
