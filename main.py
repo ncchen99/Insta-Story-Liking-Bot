@@ -56,7 +56,7 @@ with Progress() as progress:
     # adds a random delay between 1 and 3 seconds after each request
     cl.delay_range = [1, 3]
 
-    # 產生 3 個 worker
+    # 產生 1 個 worker
     for i in range(1):
         workers.append(like_storys_worker.Worker(work_storys, lock, progress, task_storys, cl))
         workers[-1].start()
