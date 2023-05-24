@@ -57,7 +57,7 @@ with Progress() as progress:
     cl.delay_range = [1, 3]
 
     # 產生 3 個 worker
-    for i in range(3):
+    for i in range(1):
         workers.append(like_storys_worker.Worker(work_storys, lock, progress, task_storys, cl))
         workers[-1].start()
 
